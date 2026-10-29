@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087f5b">
+<title>Membuka paket Smartfren</title>
+<style>
+:root{color-scheme:light dark}*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Roboto,sans-serif;max-width:520px;margin:0 auto;padding:24px 18px;line-height:1.5;background:#f4f7f6;color:#16231f}.card{margin-top:10vh;background:#fff;border:1px solid #d7e2dc;border-radius:18px;padding:22px;box-shadow:0 8px 28px #0b38200d}h1{font-size:1.35rem;margin:0 0 8px}p{margin:10px 0}.status{padding:12px;background:#eef8f2;border-radius:10px;color:#14532d;font-size:.95rem}a.btn{display:block;width:100%;padding:14px 12px;margin:12px 0;border:0;border-radius:10px;background:#087f5b;color:white;font-size:16px;text-align:center;text-decoration:none;font-weight:700}a.alt{background:#edf2ef;color:#172b24;border:1px solid #cbd8d1}small{color:#627069}code{overflow-wrap:anywhere;display:block;background:#f0f3f1;padding:10px;border-radius:8px;color:#18251e}#fallback{display:none}.note{font-size:.88rem;color:#596760}
+@media(prefers-color-scheme:dark){body{background:#101715;color:#e8f1ec}.card{background:#18211d;border-color:#35443b}.status{background:#183b2a;color:#b9f6cf}a.alt{background:#26352d;color:#e8f1ec;border-color:#3e5146}code{background:#26312b;color:#e8f1ec}small,.note{color:#a9b8af}}
+</style>
+</head>
+<body>
+<main class="card">
+<h1>Membuka paket Smartfren di MySF</h1>
+<p id="status" class="status">Sedang mencoba membuka aplikasi MySF…</p>
+<div id="fallback">
+  <p>Jika aplikasi tidak terbuka otomatis, tekan salah satu tombol berikut.</p>
+  <a class="btn" id="open-mysf" href="mysf://mysf.id/buy:internet:volume:UNL40K28D5G_CLM">Buka paket di MySF</a>
+  <a class="btn alt" id="open-intent" href="intent://mysf.id/buy:internet:volume:UNL40K28D5G_CLM#Intent;scheme=mysf;package=com.smartfren;end">Coba cara alternatif</a>
+</div>
+<p class="note">Halaman ini hanya mencoba membuka aplikasi MySF. Halaman ini tidak membeli paket atau meminta kata sandi. Jika pengalihan otomatis diblokir oleh browser, gunakan tombol di atas.</p>
+<p><small>Deep link paket:</small><code>mysf://mysf.id/buy:internet:volume:UNL40K28D5G_CLM</code></p>
+</main>
+<script>
+(function(){
+  const deepLink = 'mysf://mysf.id/buy:internet:volume:UNL40K28D5G_CLM';
+  const status = document.getElementById('status');
+  const fallback = document.getElementById('fallback');
+  // Try to launch MySF as soon as this hosted page opens.
+  // Browsers may block external-app launches without a direct user gesture,
+  // so reveal explicit buttons as a fallback shortly afterward.
+  window.setTimeout(function(){
+    try { window.location.href = deepLink; }
+    catch (e) { /* Keep the manual fallback visible. */ }
+  }, 150);
+  window.setTimeout(function(){
+    fallback.style.display = 'block';
+    status.textContent = 'Jika MySF belum terbuka, tekan tombol pembuka di bawah.';
+  }, 1400);
+})();
+</script>
+</body>
+</html>
